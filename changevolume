@@ -1,0 +1,69 @@
+#!/bin/bash
+
+function send_notification() {
+	volume=$(pamixer --get-volume)
+	iconvolume="volume-$1"
+	dunstify -a "changevolume" -u low -r "9993" -h int:value:"$volume" -i "$iconvolume" "Volume: ${volume}%" -t 2000
+}
+help(){
+	if [[ $1 == "--help" ]] || [[ $1 ==  "--h"  ]] || [[ $1 ==  "-h"  ]]; then
+		echo -e "uso:  changevolume <operación>"
+		echo -e """operaciones:
+	changevolume {up}
+	changevolume {up-100}
+	changevolume {up-ilimited}
+	changevolume {down}
+	changevolume {down-0}
+	changevolume {down-ilimited}
+	debe crear la carpeta se llama icono o cualquiera  en dunst y agrege la ruta de dunstrc icon_path = ruta/
+	obligatorio debe poner nombre en archivo
+		volume-mute.png
+		volume-up.png
+		volume-up-100.png
+		volume-up-ilimited.png
+		volume-down.png
+		volume-down-0.png
+		volume-down-ilimited.png
+		
+utilice «changevolume {-h --help}» con una operación para ver las opciones disponibles
+		"""
+	else
+		echo "utilice changevolume --help or --h"
+	fi
+
+}
+volumes=$(pamixer --get-volume)
+
+if [[ $1 == "up" ]];then
+	pamixer -u
+	pamixer -i 5
+	send_notification $1
+elif [[ $1 == "up-100" ]];then
+	pamixer -u
+	pamixer -i 100
+	send_notification $1
+elif [[ $1 == "up-ilimited" ]];then
+	pamixer -u
+	pamixer -i 5 --allow-boost
+	send_notification $1
+elif [[ $1 == "down" ]];then
+	pamixer -u
+	pamixer -d 5
+	send_notification $1
+elif [[ $1 == "down-0" ]];then
+	pamixer -u
+	pamixer -d 1000000
+	send_notification $1
+elif [[ $1 == "down-ilimited" ]];then
+	pamixer -u
+	pamixer -d 5 --allow-boost
+	send_notification $1
+else
+	help $1
+fi
+if [[ $(pamixer --get-volume-human) == 0% ]]; then
+	pamixer -t
+	if [[ $(pamixer --get-mute) -eq true ]];then
+		dunstify -i volume-mute -a "changevolume" -t 2000 -r 9993 -u low "Muted"
+	fi
+fi

@@ -1,0 +1,10 @@
+#!/bin/bash
+file=$(find /bin/ | grep -E changevolume)
+if [[ "/bin/changevolume" != $file ]]; then
+    chmod +x changevolume
+    sudo cp -rf changevolume /bin/changevolume
+    sleep 2
+    echo -e "ha sido instalado completado"
+else
+    echo -e "Ya tiene instalado"
+fi

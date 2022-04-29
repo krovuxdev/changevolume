@@ -1,0 +1,9 @@
+#!/bin/bash
+file=$(find /bin/ | grep -E changevolume)
+if [[ "/bin/changevolume" == $file ]]; then
+    rm -rf /bin/changevolume
+    sleep 3
+    echo -e "ha sido eliminado completado"
+else
+    echo -e "no tiene instalado"
+fi
