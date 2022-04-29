@@ -32,3 +32,9 @@ sudo ./install
 ```bash
 sudo ./uninstall
 ```
+
+### ya puede empezar  a usar changevolume
+# command
+```bash
+changevolume --help
+```
