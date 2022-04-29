@@ -32,6 +32,11 @@ sudo ./install
 ```bash
 sudo ./uninstall
 ```
+### debe instalar pamixer para que pueda ejecutar changevolume
+# required install utilities
+```bash
+sudo pacman -S pamixer
+```
 
 ### ya puede empezar  a usar changevolume
 # command
