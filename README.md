@@ -1,44 +1,45 @@
 ## changevolume in dunst
-## Bienvenido a nuestro proyecto volumen
+## Bienvenido a nuestro proyecto volumen | Welcome to our Volume Project
 
 ![fotos](img/volume.png)
 
 ![fotos](img/muted.png)
 
-#  Aqui esta la guia 
+# 👇 Aqui esta la guia | Here is the guide 👇
 
 
-paso 1
+#1
 ```bash
 git clone https://github.com/karimdev96/changevolume.git
 ```
-paso 2
+#2
 ```bash
 cd changevolume
 ```
-paso 3
+#3
 ```bash
 chmod +x install
 chmod +x uninstall
 ```
-### como intalar changevolume
-# install
+### como intalar **changevolume** | How  install **changevolume**
+<!-- # install -->
 ```bash
 sudo ./install
 ```
 ## or
-### como desintalar changevolume
-# uninstall
+### como desintalar changevolume | How Uninstall changevolume
+# uninstall 
 ```bash
 sudo ./uninstall
 ```
-### debe instalar pamixer para que pueda ejecutar changevolume
-# required install utilities
+<!-- ### debe instalar pamixer para que pueda ejecutar changevolume -->
+### Requisitos y utilidad | Requirements & utility
+- pamixer
 ```bash
 sudo pacman -S pamixer
 ```
 
-### ya puede empezar  a usar changevolume
+### Ahora puedes comenzar a usar ChangeVolume | Now can start using changevolume
 # command
 ```bash
 changevolume --help
