@@ -6,13 +6,11 @@
   };
 
   outputs = { self, nixpkgs, ... }: {
-    packages = {
-        changevolume = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.changevolume = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
-                ./Changevolume
+                (import ./Changevolume)
             ];
-        };
-    };
+        };    
   };
 }
