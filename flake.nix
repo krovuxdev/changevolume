@@ -8,6 +8,7 @@
   outputs = { self, nixpkgs, ... }: {
     nixosModules = {
         changevolume = import ./Changevolume/changevolume.nix;
+        home-manager = import ./Changevolume/changevolume.nix ;
         };
   };
 }
