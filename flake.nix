@@ -7,10 +7,7 @@
 
   outputs = { self, nixpkgs, ... }: {
     nixosModules = {
-        changevolume = {
-            #system = "x86_64-linux";
-            modules = import ./Changevolume/changevolume.nix;
-        };    
-  };
+        changevolume = import ./Changevolume/changevolume.nix;
+        };
   };
 }
