@@ -21,25 +21,27 @@
       in
         Pkgs
         // {
-          changevolume = import ./Changevolume {
+          changevolume = import ./Changevolume/default.nix {
             inherit system;
             pkgs = Pkgs;
           };
         }
     );
+    #pkgs = eachSystems (system: import nixpkgs {inherit system;});
   in {
     packages = eachSystems (system: {
-      changevolume = import ./Changevolume/default.nix {
-        #inherit system;
-        pkgs = (system: import nixpkgs {inherit system;});
-      };
+      changevolume = forSystem.${system}.changevolume;
+      #changevolume = import ./Changevolume/default.nix {
+      #inherit pkgs;
+      #pkgs = (system: import nixpkgs {inherit system;});
+      #};
       #eachSystems.${system}.changevolumee
     });
     homeManagerModules = eachSystems (system: {
       changevolume = import ./Changevolume/changevolume.nix self;
     });
     nixosModules = {
-    changevolume = import ./Changevolume/changevolume.nix self;
+      changevolume = import ./Changevolume/changevolume.nix self;
     };
     checks = eachSystems (system: self.packages.${system});
     formatter = eachSystems (system: forSystem.${system}.alejandra);
