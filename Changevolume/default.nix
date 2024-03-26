@@ -5,11 +5,12 @@
 pkgs.stdenv.mkDerivation {
   name = "changevolume";
   version = "1.0";
-  src = ./.;
-  buildInputs = [(import ./changevolume.nix {})];
+  src = ../.;
   meta = with pkgs.lib; {
+    homepage = "https://github.com/krovuxdev/changevolume";
     description = "My Changevolume is Control Volume";
     license = licenses.mit;
-    platforms = platforms.all;
+    platforms = platforms.linux;
+    mainProgram = "changevolume";
   };
 }

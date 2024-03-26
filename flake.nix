@@ -27,22 +27,28 @@
           };
         }
     );
-    #pkgs = eachSystems (system: import nixpkgs {inherit system;});
   in {
     packages = eachSystems (system: {
       changevolume = forSystem.${system}.changevolume;
-      #changevolume = import ./Changevolume/default.nix {
-      #inherit pkgs;
-      #pkgs = (system: import nixpkgs {inherit system;});
-      #};
-      #eachSystems.${system}.changevolumee
     });
-    homeManagerModules = eachSystems (system: {
-      changevolume = import ./Changevolume/changevolume.nix self;
-    });
-    nixosModules = {
+    home-manager = {
+      default = import ./Changevolume/changevolume.nix self;
       changevolume = import ./Changevolume/changevolume.nix self;
     };
+    homeManagerModules = {
+      default = import ./Changevolume/changevolume.nix self;
+      changevolume = import ./Changevolume/changevolume.nix self;
+    };
+    nixosModules = {
+      default = import ./Changevolume/changevolume.nix self;
+      changevolume = import ./Changevolume/changevolume.nix self;
+    };
+    nixosConfigurations = {
+      default = import ./Changevolume/changevolume.nix self;
+      changevolume = import ./Changevolume/changevolume.nix self;
+    };
+
+
     checks = eachSystems (system: self.packages.${system});
     formatter = eachSystems (system: forSystem.${system}.alejandra);
   };
